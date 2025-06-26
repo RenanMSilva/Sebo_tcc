@@ -1,0 +1,44 @@
+﻿@model IEnumerable<BookModel>
+
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        DataTable Example
+    </div>
+    <div class="card-body">
+        <table id="datatablesBook">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Price</th>
+                    <th>Year publication</th>
+                    <th>Literary Genre</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Price</th>
+                    <th>Year publication</th>
+                    <th>Literary Genre</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                @foreach (var book in Model)
+                {
+                   <tr> 
+                       <td>@book.Title </td>
+                       <td>@book.Author </td>
+                       <td>@book.Price </td>
+                       <td>@book.YearPublication </td>
+                       <td>@book.LiteraryGenre </td>
+                  </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+                    
