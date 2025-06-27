@@ -1,0 +1,71 @@
+﻿@using Sebo_tcc.DTO
+@model BookDTO
+
+<h2>Cadastro de Livro</h2>
+
+<form asp-action="Edit" method="post" enctype="multipart/form-data">
+    <div class="col-md-10 mx-auto rounded border p-3">
+        <h2 class="text-center mb-5">Editar cadastro de livro</h2>
+
+        <div class="mb-3">
+            <label asp-for="Title" class="form-label">Título</label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Description" class="form-label">Descrição</label>
+            <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Author" class="form-label">Autor</label>
+            <input asp-for="Author" class="form-control" />
+            <span asp-validation-for="Author" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Price" class="form-label">Preço</label>
+            <input asp-for="Price" class="form-control" type="number" step="0.01" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Quantity" class="form-label">Quantidade</label>
+            <input asp-for="Quantity" class="form-control" type="number" />
+            <span asp-validation-for="Quantity" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="YearPublication" class="form-label">Ano de Publicação</label>
+            <input asp-for="YearPublication" class="form-control" type="date" />
+            <span asp-validation-for="YearPublication" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <div class="offset-sm-4 col-sm-8">
+                <img src="~/assets/img/@ViewData["ImageFileName"]" width="60" />
+
+            </div>
+        </div>
+        
+
+        <div class="mb-3">
+            <label asp-for="ImageBook" class="form-label">Imagem</label>
+            <input asp-for="ImageBook" class="form-control" type="file" />
+            <span asp-validation-for="ImageBook" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="LiteraryGenre" class="form-label">Gênero Literário</label>
+            <input asp-for="LiteraryGenre" class="form-control" />
+            <span asp-validation-for="LiteraryGenre" class="text-danger"></span>
+        </div>
+
+        <div class="mt-4">
+            <button type="submit" class="btn btn-primary"> Editar</button>
+
+            <a asp-controller="Books" asp-action="Index" class="btn btn-secondary ms-2">Voltar</a>
+        </div>
+    </div>
+</form>
