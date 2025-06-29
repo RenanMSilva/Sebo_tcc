@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Sebo_tcc.Services;
 
@@ -11,9 +12,11 @@ using Sebo_tcc.Services;
 namespace Sebo_tcc.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250628012233_tabela_clientes_funcional")]
+    partial class tabela_clientes_funcional
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -93,85 +96,6 @@ namespace Sebo_tcc.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Customers");
-                });
-
-            modelBuilder.Entity("Sebo_tcc.Models.EmployeeModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("CPFEmployee")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DataHiring")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("EmailEmployee")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NameEmployee")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Employees");
-                });
-
-            modelBuilder.Entity("Sebo_tcc.Models.LoanModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("DateLoan")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateReturn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("IdBook")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdCustomer")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("ValueRequest")
-                        .HasColumnType("decimal(10,2)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdBook");
-
-                    b.HasIndex("IdCustomer");
-
-                    b.ToTable("Loans");
-                });
-
-            modelBuilder.Entity("Sebo_tcc.Models.LoanModel", b =>
-                {
-                    b.HasOne("Sebo_tcc.Models.BookModel", "Book")
-                        .WithMany()
-                        .HasForeignKey("IdBook")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Sebo_tcc.Models.CustomerModel", "Customer")
-                        .WithMany()
-                        .HasForeignKey("IdCustomer")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Book");
-
-                    b.Navigation("Customer");
                 });
 #pragma warning restore 612, 618
         }

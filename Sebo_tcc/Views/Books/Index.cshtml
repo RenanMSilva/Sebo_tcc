@@ -1,9 +1,18 @@
 ﻿@model IEnumerable<BookModel>
 
+<div class="container">
+    @if (TempData["messageSucess"] != null)
+    {
+        <div class="alert alert-success text-light" role="alert">
+            @TempData["messageSucess"]
+        </div>
+    
+    }
+
 <div class="card mb-4">
     <div class="card-header">
         <i class="fas fa-table me-1"></i>
-        DataTable Example
+        Acervo de livros
     </div>
     <div class="d-flex justify-content-end mb-3">
         <a class="btn btn-outline-success btn-sm" asp-controller="Books" asp-action="Create">Cadastrar Livro</a>
@@ -40,7 +49,7 @@
                        <td>@book.Title </td>
                        <td>@book.Author </td>
                        <td>@book.Price </td>
-                       <td>@book.YearPublication </td>
+                       <td>@book.YearPublication..ToString("dd/MM/yyyy") </td>
                        <td>@book.LiteraryGenre </td>
                        <td> <img src="~/assets/img/@book.ImageBook" width="60"/> </td>
                        <td style="white-space:nowrap">
@@ -53,5 +62,6 @@
             </tbody>
         </table>
     </div>
+</div>
 </div>
                     

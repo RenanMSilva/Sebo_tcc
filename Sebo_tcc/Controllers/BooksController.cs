@@ -66,6 +66,8 @@ namespace Sebo_tcc.Controllers
             _context.Books.Add(book);
             _context.SaveChanges();
 
+            TempData["messageSucess"] = "Cadastro realizado com sucesso!";
+
             return RedirectToAction("Index", "Books");
         }
 
@@ -82,6 +84,8 @@ namespace Sebo_tcc.Controllers
 
             _context.Books.Remove(book);
             _context.SaveChanges(true);
+
+            TempData["messageSucess"] = "Livro excluido com sucesso!";
 
             return RedirectToAction("Index", "Books");
         }
@@ -146,8 +150,11 @@ namespace Sebo_tcc.Controllers
                 }
 
                 //delete the old img
-                string oldImageFullPatch = _enviroment.WebRootPath + "/assets/img/" + book.ImageBook;
-                System.IO.File.Delete(oldImageFullPatch);
+                if (book.ImageBook != "")
+                {
+                    string oldImageFullPatch = _enviroment.WebRootPath + "/assets/img/" + book.ImageBook;
+                    System.IO.File.Delete(oldImageFullPatch);
+                }
 
             }
 
@@ -161,6 +168,8 @@ namespace Sebo_tcc.Controllers
             book.YearPublication = bookdto.YearPublication;
 
             _context.SaveChanges();
+
+            TempData["messageSucess"] = "Livro editado com sucesso!";
 
             return RedirectToAction("Index", "Books");
 
