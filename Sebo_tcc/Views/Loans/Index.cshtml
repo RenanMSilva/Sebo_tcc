@@ -11,10 +11,10 @@
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
-            Acervo de livros
+            Locação de livros
         </div>
         <div class="d-flex justify-content-end mb-3">
-            <a class="btn btn-outline-success btn-sm" asp-controller="Loans" asp-action="Create">Cadastrar Livro</a>
+            <a class="btn btn-outline-success btn-sm" asp-controller="Loans" asp-action="Create">Cadastrar locação</a>
         </div>
 
         <div class="card-body">
@@ -46,12 +46,11 @@
                             <td>@loans.Customer.Name </td>
                             <td>@loans.Book.Title </td>
                             <td>@loans.DateLoan.ToString("dd/MM/yyyy") </td>
-                            <td>@loans.DateReturn.ToString("dd/MM/yyyy") </td>
+                            <td>@loans.DateReturn.ToString("dd/MM/yyyy")</td>
                             <td>@loans.ValueRequest </td>
                             <td style="white-space:nowrap">
-                                <a class="btn btn-primary" asp-controller="Books" asp-action="Edit" asp-route-id="@loans.Id">Editar</a>
-                                <a class="btn btn-danger" asp-controller="Books" asp-action="Delete" asp-route-id="@loans.Id">Apagar</a>
-
+                                <a class="btn btn-primary" asp-controller="Books" asp-action="Edit" asp-route-id="@loans.Id">editar</a>
+                                <a class="btn btn-danger" asp-controller="Books" asp-action="Return" asp-route-id="@loans.Id">Devolução</a>
                             </td>
                         </tr>
                     }

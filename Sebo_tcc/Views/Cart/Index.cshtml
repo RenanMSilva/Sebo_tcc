@@ -1,0 +1,78 @@
+﻿
+
+<div class="row border rounded-3">
+    <div class="col-md-8 p-3">
+        <h4>Registro de Vendas</h4>
+        <hr />
+
+
+        @if (ViewBag.ErrorMessage != null)
+        {
+            <div class="alert alert-warning alert-dismissible fade show mt-4" role="alert">
+                <strong>@ViewBag.ErrorMessage</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+
+        <table class="table align-middle">
+            <tbody>
+                @foreach (var item in ViewBag.CartItems)
+                {
+                    <tr>
+                        <td>
+                            <img src="~/assets/img/@item.Item.ImageBook" width="100" class="rounded" alt="...">
+                        </td>
+                        <td>
+                            <h4>@item.Item.Title</h4>
+                            <p>
+                                autor: @item.Item.Author<br>
+                                genero: @item.Item.LiteraryGenre<br>
+                                preço: @(item.Item.Price)$
+                            </p>
+                        </td>
+                        <td style="white-space:nowrap">
+                            <button type="button" class="btn btn-outline-secondary btn-sm"
+                                    onclick="decrease(@item.Item.Id)">
+                                -
+                            </button>
+                            <span class="border rounded-3 p-2 m-1">@item.Quantity</span>
+                            <button type="button" class="btn btn-outline-secondary btn-sm"
+                                    onclick="increase(@item.Item.Id)">
+                                +
+                            </button>
+                        </td>
+                        <td>@(item.UnitPrice * item.Quantity)$</td>
+                        <td>
+                            <i class="bi bi-trash text-danger h4" style="cursor: pointer" onclick="remove(@item.Item.Id)"></i>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-4">
+        <div class="text-white rounded my-2 p-3" style="background-color: #08618d;">
+            <h4>Order Summary</h4>
+            <hr />
+
+
+            
+
+            <form method="post" asp-controller="Cart" asp-action="Confirm">
+            <div class="row">
+                <div class="col">
+                    <p>Subtotal:</p>
+                </div>
+                <div class="col">
+                    <p class="text-end">@(ViewBag.Subtotal)$</p>
+                </div>
+            </div>
+            <div class="d-grid">
+                <button class="btn btn-outline-light" type="submit">Confirmar venda</button>
+            </div>
+            </form>
+            
+        </div>
+    </div>
+
+</div>

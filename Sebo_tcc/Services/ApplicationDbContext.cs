@@ -19,6 +19,9 @@ namespace Sebo_tcc.Services
 
         public DbSet<LoanModel> Loans { get; set; }
 
-        
+        public DbSet<SaleModel> Sales { get; set; }
+        public DbSet<SaleItemModel> SaleItems { get; set; }
+
+
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Sebo_tcc.Services;
 
@@ -11,9 +12,11 @@ using Sebo_tcc.Services;
 namespace Sebo_tcc.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250705143819_tabela_vendas")]
+    partial class tabela_vendas
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -155,35 +158,6 @@ namespace Sebo_tcc.Migrations
                     b.ToTable("Loans");
                 });
 
-            modelBuilder.Entity("Sebo_tcc.Models.SaleItemModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ItemId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("SaleModelId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("UnitPrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ItemId");
-
-                    b.HasIndex("SaleModelId");
-
-                    b.ToTable("Order_Sales");
-                });
-
             modelBuilder.Entity("Sebo_tcc.Models.SaleModel", b =>
                 {
                     b.Property<int>("Id")
@@ -192,14 +166,23 @@ namespace Sebo_tcc.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("BookName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("DateSale")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("IdBook")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("SalePrice")
                         .HasPrecision(16, 2)
                         .HasColumnType("decimal(16,2)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("IdBook");
 
                     b.ToTable("Sales");
                 });
@@ -223,24 +206,15 @@ namespace Sebo_tcc.Migrations
                     b.Navigation("Customer");
                 });
 
-            modelBuilder.Entity("Sebo_tcc.Models.SaleItemModel", b =>
+            modelBuilder.Entity("Sebo_tcc.Models.SaleModel", b =>
                 {
-                    b.HasOne("Sebo_tcc.Models.BookModel", "Item")
+                    b.HasOne("Sebo_tcc.Models.BookModel", "Book")
                         .WithMany()
-                        .HasForeignKey("ItemId")
+                        .HasForeignKey("IdBook")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Sebo_tcc.Models.SaleModel", null)
-                        .WithMany("SaleItems")
-                        .HasForeignKey("SaleModelId");
-
-                    b.Navigation("Item");
-                });
-
-            modelBuilder.Entity("Sebo_tcc.Models.SaleModel", b =>
-                {
-                    b.Navigation("SaleItems");
+                    b.Navigation("Book");
                 });
 #pragma warning restore 612, 618
         }

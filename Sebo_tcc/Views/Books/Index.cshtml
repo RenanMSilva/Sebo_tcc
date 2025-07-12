@@ -3,11 +3,12 @@
 <div class="container">
     @if (TempData["messageSucess"] != null)
     {
-        <div class="alert alert-success text-light" role="alert">
+        <div id="success-alert" class="alert alert-success text-light" role="alert">
             @TempData["messageSucess"]
         </div>
     
     }
+
 
 <div class="card mb-4">
     <div class="card-header">
@@ -49,12 +50,15 @@
                        <td>@book.Title </td>
                        <td>@book.Author </td>
                        <td>@book.Price </td>
-                       <td>@book.YearPublication..ToString("dd/MM/yyyy") </td>
+                       <td>@book.YearPublication </td>
                        <td>@book.LiteraryGenre </td>
-                       <td> <img src="~/assets/img/@book.ImageBook" width="60"/> </td>
+                       <td> <img src="~/assets/img/@book.ImageBook" width="50"/> </td>
                        <td style="white-space:nowrap">
                            <a class="btn btn-primary" asp-controller="Books" asp-action="Edit" asp-route-id="@book.Id">Editar</a>
                             <a class="btn btn-danger" asp-controller="Books" asp-action="Delete" asp-route-id="@book.Id">Apagar</a>
+                                <button type="button" class="btn btn-warning btn-sm mb-2" onclick="addToCart(@book.Id)">
+                                Adicionar ao carrinho
+                            </button>
 
                        </td>
                   </tr>

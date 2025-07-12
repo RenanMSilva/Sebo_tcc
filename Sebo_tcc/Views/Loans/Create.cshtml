@@ -1,1 +1,46 @@
-﻿
+﻿@model Sebo_tcc.FormViewModel.LoanFormViewModel
+
+<h2 class="mb-4">Cadastrar Locação</h2>
+
+<form asp-action="Create" method="post">
+    <div class="row">
+        <div class="mb-3 col-md-6">
+            <label asp-for="Loan.IdCustomer" class="form-label">Cliente</label>
+            <select asp-for="Loan.IdCustomer" asp-items="Model.Customers" class="form-control">
+                <option value="">-- Selecione um cliente --</option>
+            </select>
+            <span asp-validation-for="Loan.IdCustomer" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3 col-md-6">
+            <label asp-for="Loan.IdBook" class="form-label">Livro</label>
+            <select asp-for="Loan.IdBook" asp-items="Model.Books" class="form-control">
+                <option value="">-- Selecione um livro --</option>
+            </select>
+            <span asp-validation-for="Loan.IdBook" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3 col-md-6">
+            <label asp-for="Loan.DateLoan" class="form-label"> data locação</label>
+            <input asp-for="Loan.DateLoan" class="form-control" type="date" />
+            <span asp-validation-for="Loan.DateLoan" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3 col-md-6">
+            <label asp-for="Loan.DateReturn" class="form-label">data devolução</label>
+            <input asp-for="Loan.DateReturn" class="form-control" type="date" />
+            <span asp-validation-for="Loan.DateReturn" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3 col-md-6">
+            <label asp-for="Loan.ValueRequest" class="form-label"> valor da locação</label>
+            <input asp-for="Loan.ValueRequest" class="form-control" type="number" step="0.01" />
+            <span asp-validation-for="Loan.ValueRequest" class="text-danger"></span>
+        </div>
+
+        <div class="mt-4 col-12">
+            <button type="submit" class="btn btn-success">Salvar</button>
+            <a asp-action="Index" asp-controller="Loans" class="btn btn-secondary ms-2">Cancelar</a>
+        </div>
+    </div>
+</form>

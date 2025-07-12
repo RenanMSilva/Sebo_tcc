@@ -2,6 +2,13 @@
 
 
 <div class="container">
+    @if (TempData["messageSucess"] != null)
+    {
+        <div id="success-alert" class="alert alert-success text-light" role="alert">
+            @TempData["messageSucess"]
+        </div>
+
+    }
 <div class="card mb-4">
     <div class="card-header">
         <i class="fas fa-table me-1"></i>

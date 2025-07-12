@@ -1,0 +1,65 @@
+﻿@model IEnumerable<SaleItemModel>
+
+<div class="container">
+    @if (TempData["messageSucess"] != null)
+    {
+        <div id="success-alert" class="alert alert-success text-light" role="alert">
+            @TempData["messageSucess"]
+        </div>
+
+    }
+
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            Acervo de livros
+        </div>
+
+        <div class="card-body">
+            <table id="datatablesBook">
+                <thead>
+                    <tr>
+                        <th>titulo</th>
+                        <th>autor</th>
+                        <th>preço</th>
+                        <th>Quantidade</th>
+                        <th>Data de publicação</th>
+                        <th>genero literario</th>
+                        <th>Imagem</th>
+                        <th>ações </th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>titulo</th>
+                        <th>autor</th>
+                        <th>preço</th>
+                        <th>Quantidade</th>
+                        <th>Data de publicação</th>
+                        <th>genero literario</th>
+                        <th>Imagem</th>
+                        <th>ações </th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var vendas in Model)
+                    {
+                        <tr>
+                            <td>@vendas.Item.Title </td>
+                            <td>@vendas.Item.Author </td>
+                            <td>@vendas.Item.Price </td>
+                            <td>@vendas.Quantity </td>
+                            <td>@vendas.Item.YearPublication </td>
+                            <td>@vendas.Item.LiteraryGenre </td>
+                            <td> <img src="~/assets/img/@vendas.Item.ImageBook" width="50" /> </td>
+                            <td style="white-space:nowrap">
+                                
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

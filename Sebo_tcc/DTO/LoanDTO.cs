@@ -7,10 +7,10 @@ namespace Sebo_tcc.DTO
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Selecione o cliente")]
-        public string NameCustomer { get; set; }
+        public int IdCustomer { get; set; }
 
         [Required(ErrorMessage = "Selecione o livro")]
-        public string TittleBook { get; set; } = "";
+        public int IdBook { get; set; } 
 
         [Required(ErrorMessage = "Informe a data do empréstimo")]
         [DataType(DataType.Date)]
